@@ -1,13 +1,16 @@
 
-import minimax_helpers
+import minimax
+import gamestate as game
 
-from gamestate import *
 
-g = GameState()
-inf = float("inf")
-actions = [((0, 0), inf), ((1, 0), -inf), ((2, 0), inf), ((0, 1), inf), ((1, 1), -inf)]
+best_moves = set([(0, 0), (2, 0), (0, 1)])
+rootNode = game.GameState()
+minimax_move = minimax.minimax_decision(rootNode)
 
-if all(minimax_helpers.min_value(g.result(a)) == ev for a, ev in actions):
-    print("Looks like everything works!")
+print("Best move choices: {}".format(list(best_moves)))
+print("Your code chose: {}".format(minimax_move))
+
+if minimax_move in best_moves:
+    print("That's one of the best move choices. Looks like your minimax-decision function worked!")
 else:
-    print("Uh oh! Not all the scores matched.")
+    print("Uh oh...looks like there may be a problem.")
