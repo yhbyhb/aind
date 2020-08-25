@@ -1,9 +1,19 @@
 
-# TODO: Incorporate the `depth` parameter into each function
-# TODO: Update all recursive calls to pass the depth parameter
-# TODO: Add a new conditional to cut off search when the depth
-#       limit is reached
-# NOTE: The minimax_decision function has been done for you!
+# TODO: Implement the my_moves() function
+# TODO: Change the value returned when the depth cutoff is
+#       reached to call and return the score from my_moves()
+
+# Use the player_id when you call "my_moves()"
+# DO NOT MODIFY THE PLAYER ID
+player_id = 0
+
+def my_moves(gameState):
+    # TODO: Finish this function!
+    # HINT: the global player_id variable is accessible inside
+    #       this function scope
+    loc = gameState._player_locations[player_id]
+    return len(gameState.liberties(loc))
+
 
 def minimax_decision(gameState, depth):
     """ Return the move along a branch of the game tree that
@@ -17,14 +27,14 @@ def minimax_decision(gameState, depth):
     best_score = float("-inf")
     best_move = None
     for a in gameState.actions():
-        # DONE: call has been updated with a depth limit
+        # call has been updated with a depth limit
         v = min_value(gameState.result(a), depth - 1)
         if v > best_score:
             best_score = v
             best_move = a
     return best_move
 
-# TODO: add a depth parameter to the function signature
+
 def min_value(gameState, depth):
     """ Return the value for a win (+1) if the game is over,
     otherwise return the minimum value over all legal child
@@ -32,21 +42,18 @@ def min_value(gameState, depth):
     """
     if gameState.terminal_test():
         return gameState.utility(0)
-        
-    # TODO: add a new conditional test to cut off search
-    #       when the depth parameter reaches 0 -- for now
-    #       just return a value of 0 at the depth limit
-    if depth <= 0:
-        return 0
+    
+    # New conditional depth limit cutoff
+    if depth <= 0:  # "==" could be used, but "<=" is safer 
+        return my_moves(gameState)
     
     v = float("inf")
     for a in gameState.actions():
-        # TODO: pass a decremented depth parameter to each recursive call
+        # the depth should be decremented by 1 on each call
         v = min(v, max_value(gameState.result(a), depth - 1))
     return v
 
 
-# TODO: add a depth parameter to the function signature
 def max_value(gameState, depth):
     """ Return the value for a loss (-1) if the game is over,
     otherwise return the maximum value over all legal child
@@ -55,14 +62,12 @@ def max_value(gameState, depth):
     if gameState.terminal_test():
         return gameState.utility(0)
     
-    # TODO: add a new conditional test to cut off search
-    #       when the depth parameter reaches 0 -- for now
-    #       just return a value of 0 at the depth limit
-    if depth <= 0:
-        return 0
+    # New conditional depth limit cutoff
+    if depth <= 0:  # "==" could be used, but "<=" is safer 
+        return my_moves(gameState)
     
     v = float("-inf")
     for a in gameState.actions():
-        # TODO: pass a decremented depth parameter to each recursive call
+        # the depth should be decremented by 1 on each call
         v = max(v, min_value(gameState.result(a), depth - 1))
     return v

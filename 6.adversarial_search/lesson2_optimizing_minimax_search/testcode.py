@@ -1,21 +1,16 @@
 
-import minimax
 import gamestate as game
 
+from minimax import min_value
 
-# Test the depth limit by checking the number of nodes visited
-# -- recall that minimax visits every node in the search tree,
-# so if we search depth one on an empty board then minimax should
-# visit each of the five open spaces
+
 depth_limit = 1
-expected_node_count = 5
+expected_values = 0
 rootNode = game.GameState()
-_ = minimax.minimax_decision(rootNode, depth_limit)
+tests = [((0, 0), 2), ((1, 0), 3), ((2, 0), 1), ((0, 1), 2), ((1, 1), 3)]
 
-print("Expected node count: {}".format(expected_node_count))
-print("Your node count: {}".format(game.call_counter))
-
-if game.call_counter == expected_node_count:
-    print("That's right! Looks like your depth limit is working!")
+if all(min_value(rootNode.result(a), depth_limit) == v for a, v in tests):
+    print("Good job!")
 else:
-    print("Uh oh...looks like there may be a problem.")
+    print("Uh oh!\n Looks like one or more of the values didn't match.")
+
