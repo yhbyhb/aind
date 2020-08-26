@@ -1,16 +1,8 @@
 
-# TODO: Implement the my_moves() function
-# TODO: Change the value returned when the depth cutoff is
-#       reached to call and return the score from my_moves()
-
-# Use the player_id when you call "my_moves()"
 # DO NOT MODIFY THE PLAYER ID
 player_id = 0
 
 def my_moves(gameState):
-    # TODO: Finish this function!
-    # HINT: the global player_id variable is accessible inside
-    #       this function scope
     loc = gameState._player_locations[player_id]
     return len(gameState.liberties(loc))
 
@@ -43,8 +35,7 @@ def min_value(gameState, depth):
     if gameState.terminal_test():
         return gameState.utility(0)
     
-    # New conditional depth limit cutoff
-    if depth <= 0:  # "==" could be used, but "<=" is safer 
+    if depth <= 0:
         return my_moves(gameState)
     
     v = float("inf")
@@ -62,8 +53,7 @@ def max_value(gameState, depth):
     if gameState.terminal_test():
         return gameState.utility(0)
     
-    # New conditional depth limit cutoff
-    if depth <= 0:  # "==" could be used, but "<=" is safer 
+    if depth <= 0:
         return my_moves(gameState)
     
     v = float("-inf")
