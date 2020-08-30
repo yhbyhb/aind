@@ -35,6 +35,11 @@ class GameState:
         self._board[-1][-1] = 1  # block lower-right corner
         self._parity = 0
         self._player_locations = [None, None]
+    
+    @property
+    def hashable(self):
+        from itertools import chain
+        return tuple(chain(*self._board)) + tuple(self._player_locations) + (self._parity, )
         
     def actions(self):
         """ Return a list of legal actions for the active player """
