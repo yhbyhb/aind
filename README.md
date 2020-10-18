@@ -9,12 +9,8 @@ It has classroom materials and project results.
 
 ![alt text][result]
 
-## Projects
-
-### 1. Sudoku Solver
-
-### 2. Classical Planning
-
-### 3. Game Playing
-
-### 4. Part of Speech Tagger
+## [Projects](https://github.com/yhbyhb/artificial-intelligence/tree/master/Projects)
+  1. [Sudoku Solver](https://github.com/yhbyhb/artificial-intelligence/tree/master/Projects/1_Sudoku)
+  2. [Classical Planning](https://github.com/yhbyhb/artificial-intelligence/tree/master/Projects/2_Classical%20Planning)
+  3. [Game Playing](https://github.com/yhbyhb/artificial-intelligence/tree/master/Projects/3_Adversarial%20Search)
+  4. [Part of Speech Tagger](https://github.com/yhbyhb/artificial-intelligence/tree/master/Projects/4_HMM%20Tagger)
